@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
@@ -15,18 +16,28 @@ public class MainMenuUIManager : MonoBehaviour
     [SerializeField]
     private Button quitButton;
 
+    private void Start()
+    {
+        this.playButton.enabled = true;
+        this.instrucButton.enabled = true;
+        this.quitButton.enabled = true;
+    }
+
     public void OnPlayButtonClick()
     {
-
+        this.playButton.enabled = false;
+        SceneManager.LoadScene("GameScene");
     }
 
     public void OnInstructButtonClick()
     {
-
+        this.instrucButton.enabled = false;
+        //TODO: Show Instruciton Panel
     }
 
     public void OnQuitButtonClick()
     {
+        this.quitButton.enabled = false;
         Application.Quit();
     }
 }
