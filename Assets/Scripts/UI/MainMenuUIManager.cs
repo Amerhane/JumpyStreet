@@ -10,11 +10,16 @@ using UnityEngine.UI;
 public class MainMenuUIManager : MonoBehaviour
 {
     [SerializeField]
+    private CanvasGroup canvasGroup;
+
+    [SerializeField]
     private Button playButton;
     [SerializeField]
     private Button instrucButton;
     [SerializeField]
     private Button quitButton;
+    [SerializeField]
+    private Button backButton;
 
     private void Start()
     {
@@ -33,6 +38,11 @@ public class MainMenuUIManager : MonoBehaviour
     {
         this.instrucButton.enabled = false;
         //TODO: Show Instruciton Panel
+    }
+
+    public void OnBackButtonClick()
+    {
+
     }
 
     public void OnQuitButtonClick()
