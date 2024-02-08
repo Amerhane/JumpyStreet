@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// 
+/// </summary>
 [RequireComponent(typeof(Image))]
 public class Tab : MonoBehaviour, 
     IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
