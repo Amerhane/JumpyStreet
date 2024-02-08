@@ -21,19 +21,19 @@ public class Score : MonoBehaviour
         //Create prompt to enter name if high score.
     }
 
-    private void SaveScore(int score, string playerName)
+    public void SaveScore(int score, string playerName)
     {
         PlayerPrefs.SetInt("highScore", score);
         PlayerPrefs.SetString("playerName", playerName);
         PlayerPrefs.Save();
     }
 
-    private int LoadScore()
+    public int LoadScore()
     {
         return PlayerPrefs.GetInt("highScore", 0);
     }
 
-    private string LoadPlayerName()
+    public string LoadPlayerName()
     {
         return PlayerPrefs.GetString("playerName", "Player");
     }

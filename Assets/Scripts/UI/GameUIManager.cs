@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,30 +12,44 @@ using UnityEngine.UI;
 public class GameUIManager : MonoBehaviour
 {
     [SerializeField]
-    private Button resumeButton;
+    private GameObject pauseMenuObject;
     [SerializeField]
-    private Button restartButton;
-    [SerializeField]
-    private Button quitButton;
+    private GameObject gameOverMenu;
 
     [SerializeField]
-    private GameObject pauseMenuObject;
+    private Score scoreSystem;
+
+    [SerializeField]
+    private TMP_Text highScoreNumText;
+    [SerializeField]
+    private TMP_Text yourScoreNumText;
 
     private bool paused;
+    private bool gameOver;
 
     private void Start()
     {
         pauseMenuObject.SetActive(false);
+        gameOverMenu.SetActive(false);
         paused = false;
+        gameOver = false;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (!gameOver && Input.GetKeyDown(KeyCode.Escape))
         {
             PauseGame();
         }
     }
+
+    public void GameOver()
+    {
+        gameOver = true;
+        gameOverMenu.SetActive(true);
+
+    }
+
     public void OnResumeButtonClick()
     {
         PauseGame();
