@@ -4,15 +4,37 @@ using UnityEngine;
 
 public class Score : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private int score;
+
+    private void Start()
     {
-        
+        score = 0;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        //Check when player jumps and increment score.
+
+        //Check if player is dead.
+        //If dead, compare high scores.
+        //Create prompt to enter name if high score.
+    }
+
+    private void SaveScore(int score, string playerName)
+    {
+        PlayerPrefs.SetInt("highScore", score);
+        PlayerPrefs.SetString("playerName", playerName);
+        PlayerPrefs.Save();
+    }
+
+    private int LoadScore()
+    {
+        return PlayerPrefs.GetInt("highScore", 0);
+    }
+
+    private string LoadPlayerName()
+    {
+        return PlayerPrefs.GetString("playerName", "Player");
     }
 }
