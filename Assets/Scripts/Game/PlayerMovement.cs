@@ -49,6 +49,10 @@ public class PlayerMovement : MonoBehaviour
             else if (Input.GetAxisRaw("Vertical") != 0)
             {
                 nextDirection.x = -Input.GetAxisRaw("Vertical");
+                if(Input.GetAxisRaw("Vertical") >= 0)
+                {
+                    //nextDirection.rotation = Quaternion(90, 0, 0);
+                }
                 Debug.Log("Vertical");
             }
         }
