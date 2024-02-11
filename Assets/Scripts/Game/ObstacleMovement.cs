@@ -8,19 +8,34 @@ using UnityEngine.UIElements;
 public class ObstacleMovement : MonoBehaviour
 {
     private Rigidbody obstacleRB;
+    bool isCarFlipped = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        isCarFlipped = gameObject.transform.rotation.eulerAngles.y >= 170 ? true : false;
+        Debug.Log(isCarFlipped);
+
         obstacleRB = GetComponent<Rigidbody>();
+        obstacleRB.constraints = RigidbodyConstraints.FreezePositionY;
+        obstacleRB.freezeRotation = true;
+
         MoveForward();
     }
 
     void MoveForward()
     {
-        if (obstacleRB != null) 
-        { 
-            obstacleRB.AddForce(new Vector3(0, 0, 1) * SetObstacleSpeed(), ForceMode.Force);
+        int setZCord = 1;
+
+        if (isCarFlipped)
+        {
+            Debug.Log(true);
+            setZCord *= -1;
+            Debug.Log("Z CORD " + setZCord);
+        }
+        if (obstacleRB != null)
+        {
+            obstacleRB.AddForce(new Vector3(0, 0, setZCord) * SetObstacleSpeed(), ForceMode.Force);
         }
     }
 
@@ -44,9 +59,6 @@ public class ObstacleMovement : MonoBehaviour
             // Speed is between 50 and 125
             speed = Random.Range(50f, 125f);
         }
-
-        Debug.Log(speed);
-
         return speed;
     }
 }

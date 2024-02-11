@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8589255400804252164}
   - component: {fileID: 8131964787202162981}
   - component: {fileID: 9017578738205065071}
+  - component: {fileID: 1225445436199304429}
   m_Layer: 0
   m_Name: Road
   m_TagString: Untagged
@@ -105,3 +106,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1225445436199304429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759170829802963679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a0a79adb1e32d74588b6c5292118b82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  truckPref: {fileID: 1886255258883447616, guid: 04c626046065f9640bb2337f31c85a3a, type: 3}
+  busPref: {fileID: 2176321547281502581, guid: 9f29fb99bb4ab4e46ac3f13a2d08e15a, type: 3}
+  carPref: {fileID: 1765163314719213103, guid: c9515ae5b8794c94da2d93b06c9f3b81, type: 3}
