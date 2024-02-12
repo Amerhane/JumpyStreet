@@ -68,7 +68,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 225f9386c7c8f0945ba66482d1cd2887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 113.75
+  xJumpForce: 75.75744
+  yJumpForce: 163.75
   groundCheckDistance: 0.5
   obstacleCheckDistance: 2
 --- !u!54 &8656941862268650090
