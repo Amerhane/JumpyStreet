@@ -6,9 +6,10 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody rb;
 
-    public float jumpForce = 100f;
-    public float groundCheckDistance = 0.3f;
-    public float obstacleCheckDistance = 2.0f;
+    [SerializeField] float xJumpForce = 100f;
+    [SerializeField] float yJumpForce = 100f;
+    [SerializeField] float groundCheckDistance = 0.3f;
+    [SerializeField] float obstacleCheckDistance = 2.0f;
     bool isGrounded = false;
 
     void Start()
@@ -33,22 +34,22 @@ public class PlayerMovement : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.W))
             {
                 AdjustPositionAndRotation(new Vector3(0, 0, 0));
-                rb.AddForce(new Vector3(jumpForce, jumpForce, 0));                
+                rb.AddForce(new Vector3(xJumpForce, yJumpForce, 0));                
             }
             if (Input.GetKeyDown(KeyCode.S))
             {
                 AdjustPositionAndRotation(new Vector3(0, 180, 0));
-                rb.AddForce(new Vector3(-jumpForce, jumpForce, 0));
+                rb.AddForce(new Vector3(-xJumpForce, yJumpForce, 0));
             }
             if (Input.GetKeyDown(KeyCode.A))
             {
                 AdjustPositionAndRotation(new Vector3(0, -90, 0));
-                rb.AddForce(new Vector3(0, jumpForce, jumpForce));
+                rb.AddForce(new Vector3(0, xJumpForce, yJumpForce));
             }
             if (Input.GetKeyDown(KeyCode.D))
             {
                 AdjustPositionAndRotation(new Vector3(0, 90, 0));
-                rb.AddForce(new Vector3(0, jumpForce, -jumpForce));
+                rb.AddForce(new Vector3(0, xJumpForce, -yJumpForce));
                 
             }
         }
