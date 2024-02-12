@@ -68,8 +68,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 225f9386c7c8f0945ba66482d1cd2887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 100
-  groundCheckDistance: 0.8
+  jumpForce: 114
+  groundCheckDistance: 0.75
   obstacleCheckDistance: 2
 --- !u!54 &8656941862268650090
 Rigidbody:
