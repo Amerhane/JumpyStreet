@@ -4,65 +4,60 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    Vector3 nextDirection;
-    Vector3 currentPosition;
+    private Rigidbody rb;
 
-    Rigidbody rb;
-    public float jumpForce;
-    public float moveSpeed;
-    public float rotationSpeed;
+    public float jumpForce = 100f;
+    public float groundCheckDistance = 0.3f;
+    public float obstacleCheckDistance = 2.0f;
+    bool isGrounded = false;
 
-    public Animator animator;
-    // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
-
-        jumpForce = 5f;
-        moveSpeed = 5f;
-        rotationSpeed = 1000f;
     }
 
-    // Update is called once per frame
-    void Update()
+    void Update ()
     {
-        if (transform.position != new Vector3(currentPosition.x, transform.position.y, currentPosition.z) + nextDirection)
+        if (Physics.Raycast((transform.position + Vector3.up * 0.1f), Vector3.down, groundCheckDistance) || Physics.Raycast((transform.position + Vector3.up * 0.1f), Vector3.forward, obstacleCheckDistance)) // second part of if statement can be used to check for obstacles in front of player
         {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(currentPosition.x, transform.position.y, currentPosition.z) + nextDirection, moveSpeed * Time.deltaTime);
-
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(nextDirection), rotationSpeed * Time.deltaTime);
+            isGrounded = true;
         }
         else
         {
-            nextDirection = Vector3.zero;
-            currentPosition = transform.position;
-            currentPosition.x = Mathf.Round(currentPosition.x);
-            currentPosition.y = Mathf.Round(currentPosition.y);
-
-            
-            if (Input.GetAxisRaw("Horizontal") != 0)
-            {
-                nextDirection.z = Input.GetAxisRaw("Horizontal");
-                Debug.Log(nextDirection);
-            }
-            else if (Input.GetAxisRaw("Vertical") != 0)
-            {
-                nextDirection.x = -Input.GetAxisRaw("Vertical");
-                if(Input.GetAxisRaw("Vertical") >= 0)
-                {
-                    //nextDirection.rotation = Quaternion(90, 0, 0);
-                }
-                Debug.Log("Vertical");
-            }
+            isGrounded = false;
         }
 
 
+        if (isGrounded) 
+        { 
+            if(Input.GetKeyDown(KeyCode.W))
+            {
+                AdjustPositionAndRotation(new Vector3(0, 0, 0));
+                rb.AddForce(new Vector3(jumpForce, jumpForce, 0));                
+            }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                AdjustPositionAndRotation(new Vector3(0, 180, 0));
+                rb.AddForce(new Vector3(-jumpForce, jumpForce, 0));
+            }
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                AdjustPositionAndRotation(new Vector3(0, -90, 0));
+                rb.AddForce(new Vector3(0, jumpForce, jumpForce));
+            }
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                AdjustPositionAndRotation(new Vector3(0, 90, 0));
+                rb.AddForce(new Vector3(0, jumpForce, -jumpForce));
+                
+            }
+        }
     }
 
-    void Move()
+    void AdjustPositionAndRotation(Vector3 newRotation)
     {
-        rb.AddForce(0, jumpForce, 0);
+        rb.velocity = Vector3.zero;
+        transform.eulerAngles = newRotation;
+        transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Round(transform.position.z));
     }
-
 }
