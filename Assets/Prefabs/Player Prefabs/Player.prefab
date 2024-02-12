@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.6, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.43431, y: 0.43431, z: 0.43431}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5549758676377343978}
@@ -54,8 +54,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.97423196, y: 1.2590504, z: 1.25}
-  m_Center: {x: 0.031363785, y: 0.022183508, z: 0}
+  m_Size: {x: 0.5461914, y: 1.2590504, z: 0.7683358}
+  m_Center: {x: 0.00020119548, y: 0.022183537, z: -0.0005968362}
 --- !u!114 &4551818801888872180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,8 +68,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 225f9386c7c8f0945ba66482d1cd2887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 114
-  groundCheckDistance: 0.75
+  jumpForce: 113.75
+  groundCheckDistance: 0.5
   obstacleCheckDistance: 2
 --- !u!54 &8656941862268650090
 Rigidbody:
