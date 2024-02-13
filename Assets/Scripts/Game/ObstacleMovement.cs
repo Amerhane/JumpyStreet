@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 // General movement script for moving obstacles (Trucks, Busses, Cars, Logs)
 
@@ -17,7 +16,6 @@ public class ObstacleMovement : MonoBehaviour
         Debug.Log(isCarFlipped);
 
         obstacleRB = GetComponent<Rigidbody>();
-        obstacleRB.constraints = RigidbodyConstraints.FreezePositionY;
         obstacleRB.freezeRotation = true;
 
         MoveForward();

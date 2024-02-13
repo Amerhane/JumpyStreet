@@ -28,7 +28,7 @@ public class River : MonoBehaviour
 
         randomSpawnRate = Random.Range(5f, 7f);
 
-        GameObject spawnedObject = GameObject.Instantiate(logPref, new Vector3(transform.position.x, 0f, zSpawnCord), transform.rotation);
+        GameObject spawnedObject = GameObject.Instantiate(logPref, new Vector3(transform.position.x, 0.034f, zSpawnCord), transform.rotation);
 
         StartCoroutine(DespawnVehicle(spawnedObject));
     }
