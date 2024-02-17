@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -67,15 +68,15 @@ public class GameUIManager : MonoBehaviour
 
     private void PauseGame()
     {
-        if (!paused)
-        {
-            paused = true;
-            pauseMenuObject.SetActive(true);
-        }
-        else if (paused)
+        if (paused)
         {
             paused = false;
             pauseMenuObject.SetActive(false);
+        }
+        else
+        {
+            paused = true;
+            pauseMenuObject.SetActive(true);
         }
     }
 }
