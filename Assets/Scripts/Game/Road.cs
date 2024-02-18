@@ -11,10 +11,12 @@ public class Road : MonoBehaviour
     [SerializeField] private GameObject carPref;
 
     private float randomSpawnRate = 0f;
+    private float rowSpeed = 0f;
 
     private void Start()
     {
         randomSpawnRate = Random.Range(3f, 7f);
+        rowSpeed = Random.Range(100f, 250f);
 
         FlipOrientation();
         InvokeRepeating("SpawnVehicle", 0f, randomSpawnRate);
@@ -49,6 +51,8 @@ public class Road : MonoBehaviour
                 spawnedObject = GameObject.Instantiate(carPref, new Vector3(transform.position.x, 0.275f, zSpawnCord), transform.rotation);
                 break;
         }
+
+        spawnedObject.GetComponent<ObstacleMovement>().rowSpeed = rowSpeed;
 
         StartCoroutine(DespawnVehicle(spawnedObject));
     }

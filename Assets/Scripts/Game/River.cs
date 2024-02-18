@@ -8,10 +8,12 @@ public class River : MonoBehaviour
     [SerializeField] private GameObject logPref;
 
     private float randomSpawnRate = 0f;
+    private float rowSpeed = 0f;
 
     private void Start()
     {
         randomSpawnRate = Random.Range(3f, 7f);
+        rowSpeed = Random.Range(50f, 125f);
 
         FlipOrientation();
         InvokeRepeating("SpawnVehicle", 0f, randomSpawnRate);
@@ -29,6 +31,8 @@ public class River : MonoBehaviour
         randomSpawnRate = Random.Range(5f, 7f);
 
         GameObject spawnedObject = GameObject.Instantiate(logPref, new Vector3(transform.position.x, 0.034f, zSpawnCord), transform.rotation);
+
+        spawnedObject.GetComponent<ObstacleMovement>().rowSpeed = rowSpeed;
 
         StartCoroutine(DespawnVehicle(spawnedObject));
     }
