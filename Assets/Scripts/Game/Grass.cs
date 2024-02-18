@@ -33,7 +33,7 @@ public class Grass : MonoBehaviour
         for (int i = 0; i < 9; i++) 
         {
             float shouldPlantSpawn = Random.Range(0f, 100f);
-            if (shouldPlantSpawn >= 50)
+            if (shouldPlantSpawn >= 70)
             {
                 if (spawnedObstacles < 8)
                 {
