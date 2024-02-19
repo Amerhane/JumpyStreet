@@ -8,6 +8,7 @@ TagManager:
   - SmallObstacle
   - WaterObstacle
   - Vehicle
+  - Water
   layers:
   - Default
   - TransparentFX

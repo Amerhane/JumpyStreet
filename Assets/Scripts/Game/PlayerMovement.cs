@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "WaterObstacle")
+        if (collision.gameObject.tag == "Water")
         {
             Debug.Log("WATER");
             transform.position = respawn.transform.position;
