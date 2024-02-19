@@ -39,24 +39,27 @@ public class PlayerMovement : MonoBehaviour
         { 
             if(Input.GetKeyDown(KeyCode.W))
             {
+                
+                rb.AddForce(new Vector3(xJumpForce, yJumpForce, 0));
                 AdjustPositionAndRotation(new Vector3(0, 0, 0));
-                rb.AddForce(new Vector3(xJumpForce, yJumpForce, 0));                
             }
             if (Input.GetKeyDown(KeyCode.S))
             {
-                AdjustPositionAndRotation(new Vector3(0, 180, 0));
+                
                 rb.AddForce(new Vector3(-xJumpForce, yJumpForce, 0));
+                AdjustPositionAndRotation(new Vector3(0, 180, 0));
             }
             if (Input.GetKeyDown(KeyCode.A))
             {
+                
+                rb.AddForce(new Vector3(0, yJumpForce, xJumpForce));
                 AdjustPositionAndRotation(new Vector3(0, -90, 0));
-                rb.AddForce(new Vector3(0, xJumpForce, yJumpForce));
             }
             if (Input.GetKeyDown(KeyCode.D))
             {
-                AdjustPositionAndRotation(new Vector3(0, 90, 0));
-                rb.AddForce(new Vector3(0, xJumpForce, -yJumpForce));
                 
+                rb.AddForce(new Vector3(0, yJumpForce, -xJumpForce));
+                AdjustPositionAndRotation(new Vector3(0, 90, 0));
             }
         }
     }
@@ -65,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.velocity = Vector3.zero;
         transform.eulerAngles = newRotation;
-        transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Round(transform.position.z));
+        transform.position = new Vector3(Mathf.Round(transform.position.x), transform.position.y, Mathf.Round(transform.position.z));
     }
 
     private void OnCillisionEnter(Collision collision)
