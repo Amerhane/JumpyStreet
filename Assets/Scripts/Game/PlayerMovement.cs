@@ -23,25 +23,15 @@ public class PlayerMovement : MonoBehaviour
 
     void Update ()
     {
-        if (Physics.BoxCast((transform.position + Vector3.up * 0.1f), transform.lossyScale / 2, Vector3.down, out hit, transform.rotation, groundCheckDistance) || Physics.BoxCast((transform.position + Vector3.up * 0.1f), transform.lossyScale / 2, Vector3.left, out hit, transform.rotation, obstacleCheckDistance) || Physics.BoxCast((transform.position + Vector3.up * 0.1f), transform.lossyScale / 2, Vector3.right, out hit, transform.rotation, obstacleCheckDistance))
+        if (Physics.BoxCast((transform.position + Vector3.up * 0.1f), transform.lossyScale / 2, Vector3.down, out hit, transform.rotation, groundCheckDistance))
         {
             isGrounded = true;
-            Debug.Log("should jump");
-
-            if(hit.collider.tag == "WaterObstacle")
-            {
-                transform.position = respawn.transform.position;
-            }
-
-            if(hit.collider.tag == "LargeObstacle" || hit.collider.tag == "SmallObstacle")
-            {
-                transform.position = respawn.transform.position;
-            }
+            //Debug.Log("should jump");
         }
         else
         {
             isGrounded = false;
-            Debug.Log("should't jump");
+            //Debug.Log("should't jump");
         }
 
 
@@ -76,5 +66,19 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = Vector3.zero;
         transform.eulerAngles = newRotation;
         transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Round(transform.position.z));
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.tag == "WaterObstacle")
+        {
+            Debug.Log("WATER");
+            transform.position = respawn.transform.position;
+        }
+
+        if (collision.gameObject.tag == "LargeObstacle" || collision.gameObject.tag == "SmallObstacle")
+        {
+            transform.position = respawn.transform.position;
+        }
     }
 }
