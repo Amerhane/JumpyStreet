@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y, Mathf.Round(transform.position.z));
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnCillisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Water")
         {
