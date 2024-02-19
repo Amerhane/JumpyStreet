@@ -36,7 +36,7 @@ public class TabGroup : MonoBehaviour
     public void OnTabEnter(Tab tab)
     {
         ResetTabs();
-        if (selectedTab != null || tab != selectedTab )
+        if (selectedTab == null || tab != selectedTab)
         {
             tab.SetBackground(tabHover);
         }
