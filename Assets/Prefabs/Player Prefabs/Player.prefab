@@ -54,8 +54,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.5461914, y: 1.2590504, z: 0.7683358}
-  m_Center: {x: 0.00020119548, y: 0.022183537, z: -0.0005968362}
+  m_Size: {x: 0.54819286, y: 1.2218556, z: 0.7683358}
+  m_Center: {x: 0.009208177, y: 0.00075001584, z: -0.0005968219}
 --- !u!114 &4551818801888872180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,7 +70,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xJumpForce: 75.75744
   yJumpForce: 163.75
-  groundCheckDistance: 0.5
+  groundCheckDistance: 0.1468
   obstacleCheckDistance: 2
 --- !u!54 &8656941862268650090
 Rigidbody:

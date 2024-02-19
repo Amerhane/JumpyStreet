@@ -12,6 +12,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float obstacleCheckDistance = 2.0f;
     bool isGrounded = false;
 
+    [SerializeField] GameObject respawn;
+
+    RaycastHit hit;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -19,13 +23,25 @@ public class PlayerMovement : MonoBehaviour
 
     void Update ()
     {
-        if (Physics.Raycast((transform.position + Vector3.up * 0.1f), Vector3.down, groundCheckDistance) || Physics.Raycast((transform.position + Vector3.up * 0.1f), Vector3.forward, obstacleCheckDistance)) // second part of if statement can be used to check for obstacles in front of player
+        if (Physics.BoxCast((transform.position + Vector3.up * 0.1f), transform.lossyScale / 2, Vector3.down, out hit, transform.rotation, groundCheckDistance) || Physics.BoxCast((transform.position + Vector3.up * 0.1f), transform.lossyScale / 2, Vector3.left, out hit, transform.rotation, obstacleCheckDistance) || Physics.BoxCast((transform.position + Vector3.up * 0.1f), transform.lossyScale / 2, Vector3.right, out hit, transform.rotation, obstacleCheckDistance))
         {
             isGrounded = true;
+            Debug.Log("should jump");
+
+            if(hit.collider.tag == "WaterObstacle")
+            {
+                transform.position = respawn.transform.position;
+            }
+
+            if(hit.collider.tag == "LargeObstacle" || hit.collider.tag == "SmallObstacle")
+            {
+                transform.position = respawn.transform.position;
+            }
         }
         else
         {
             isGrounded = false;
+            Debug.Log("should't jump");
         }
 
 
