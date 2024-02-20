@@ -25,6 +25,11 @@ public class GameUIManager : MonoBehaviour
     [SerializeField]
     private TMP_Text yourScoreNumText;
 
+    [SerializeField]
+    private GameObject highScoreMenu;
+    [SerializeField]
+    private TMP_InputField inputBox;
+
     private bool paused;
     private bool gameOver;
 
@@ -32,6 +37,7 @@ public class GameUIManager : MonoBehaviour
     {
         pauseMenuObject.SetActive(false);
         gameOverMenu.SetActive(false);
+        highScoreMenu.SetActive(false);
         paused = false;
         gameOver = false;
     }
@@ -42,13 +48,40 @@ public class GameUIManager : MonoBehaviour
         {
             PauseGame();
         }
+
+        if(!gameOver && Input.GetKeyDown(KeyCode.P))
+        {
+            GameOver();
+        }
+
+        if(gameOver)
+        {
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                SceneManager.LoadScene("MainMenuScene");
+            }
+        }
     }
 
     public void GameOver()
     {
         gameOver = true;
-        gameOverMenu.SetActive(true);
 
+        highScoreNumText.text = scoreSystem.LoadHighScore().ToString();
+        yourScoreNumText.text = scoreSystem.GetPlayerScore().ToString();
+
+        gameOverMenu.SetActive(true);
+        if(scoreSystem.GetPlayerScore() > scoreSystem.LoadHighScore())
+        {
+            highScoreMenu.SetActive(true);
+            inputBox.onEndEdit.AddListener(SubmitName);
+        }
+    }
+
+    private void SubmitName(string playerName)
+    {
+        scoreSystem.SaveScore(scoreSystem.GetPlayerScore(), playerName);
+        highScoreMenu.SetActive(false);
     }
 
     public void OnResumeButtonClick()
@@ -58,7 +91,7 @@ public class GameUIManager : MonoBehaviour
 
     public void OnRestartButtonClick()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("GameUITestScene");
     }
 
     public void OnQuitButtonClick()
@@ -71,11 +104,13 @@ public class GameUIManager : MonoBehaviour
         if (paused)
         {
             paused = false;
+            Time.timeScale = 1;
             pauseMenuObject.SetActive(false);
         }
         else
         {
             paused = true;
+            Time.timeScale = 0;
             pauseMenuObject.SetActive(true);
         }
     }
