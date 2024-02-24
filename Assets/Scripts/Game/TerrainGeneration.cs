@@ -19,8 +19,8 @@ public class TerrainGeneration : MonoBehaviour
     // Used for setting the position of the instantiation of the game object
     private Vector3 instPos = new Vector3(0, 0, 0);
 
-    // Used for later removal of the spawned tiles
-    private List<GameObject> spawnedTerrain = new List<GameObject>();
+    // Used for later removal of the spawned tiles (set as serializefield so that the spawn area terrain could be manually added)
+    [SerializeField] private List<GameObject> spawnedTerrain = new List<GameObject>();
 
     private void Start()
     {
@@ -91,13 +91,11 @@ public class TerrainGeneration : MonoBehaviour
                     if (dist <= 1f)
                     {
                         Destroy(spawnedTerrain[i]);
-                        Debug.Log("Destroyed Terrain");
                     }
                 }
                 else
                 {
                     spawnedTerrain.Remove(spawnedTerrain[i]);
-                    Debug.Log("Removed Terrain");
                 }
             }
         }
