@@ -7,7 +7,9 @@ public class TerrainGeneration : MonoBehaviour
     [SerializeField] private GameObject grassTerrain;
     [SerializeField] private GameObject riverTerrain;
     [SerializeField] private GameObject roadTerrain;
-    
+
+    private GameObject player;
+
     // Used for picking terrain
     private int firstRand = 0;
     private int secondRand = 0;
@@ -16,6 +18,14 @@ public class TerrainGeneration : MonoBehaviour
     private int distPlayer = 12;
     // Used for setting the position of the instantiation of the game object
     private Vector3 instPos = new Vector3(0, 0, 0);
+
+    // Used for later removal of the spawned tiles
+    private List<GameObject> spawnedTerrain = new List<GameObject>();
+
+    private void Start()
+    {
+        player = GameObject.Find("PlayerPrefab");
+    }
 
     // Update is called once per frame
     private void Update()
@@ -39,6 +49,8 @@ public class TerrainGeneration : MonoBehaviour
                     distPlayer += 1;
                     GameObject grassInst = Instantiate(grassTerrain) as GameObject;
                     grassInst.transform.position = instPos;
+                    // add grass terrain to the list of spawned terrain in the scene
+                    spawnedTerrain.Add(grassInst);
                 }
             }
             if (firstRand >= 34 && firstRand <= 85) // Roads are generated if the number in the range of 34% and 85%
@@ -51,6 +63,8 @@ public class TerrainGeneration : MonoBehaviour
                     distPlayer += 1;
                     GameObject roadInst = Instantiate(roadTerrain) as GameObject;
                     roadInst.transform.position = instPos;
+                    // add road terrain to the list of spawned terrain in the scene
+                    spawnedTerrain.Add(roadInst);
                 }
             }
             if (firstRand >= 86) // Rivers are generated if the number is in the last 15% of the range (86%+)
@@ -63,6 +77,27 @@ public class TerrainGeneration : MonoBehaviour
                     distPlayer += 1;
                     GameObject riverInst = Instantiate(riverTerrain) as GameObject;
                     riverInst.transform.position = instPos;
+                    // add river terrain to the list of spawned terrain in the scene
+                    spawnedTerrain.Add(riverInst);
+                }
+            }
+
+            for (int i = 0; i < spawnedTerrain.Count; i++)
+            {
+                if (spawnedTerrain[i] != null)
+                {
+                    float dist = Vector3.Distance(spawnedTerrain[i].transform.position, player.GetComponentInChildren<PlayerMovement>().destroyPoint);
+
+                    if (dist <= 1f)
+                    {
+                        Destroy(spawnedTerrain[i]);
+                        Debug.Log("Destroyed Terrain");
+                    }
+                }
+                else
+                {
+                    spawnedTerrain.Remove(spawnedTerrain[i]);
+                    Debug.Log("Removed Terrain");
                 }
             }
         }

@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float obstacleCheckDistance = 2.0f;
     bool isGrounded = false;
 
+    public Vector3 destroyPoint { get; private set; }
+
     [SerializeField] GameObject respawn;
 
     RaycastHit hit;
@@ -62,6 +64,8 @@ public class PlayerMovement : MonoBehaviour
                 AdjustPositionAndRotation(new Vector3(0, 90, 0));
             }
         }
+
+        destroyPoint = new Vector3((transform.position.x - 5f), 0f, 0f);
     }
 
     void AdjustPositionAndRotation(Vector3 newRotation)

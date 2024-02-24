@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -835,6 +835,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 199526350977283412, guid: 4957a11ce18c7c8448804c780925fb80, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 15.032922
+      objectReference: {fileID: 0}
+    - target: {fileID: 199526350977283412, guid: 4957a11ce18c7c8448804c780925fb80, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.1601224
+      objectReference: {fileID: 0}
     - target: {fileID: 1095182707368029540, guid: 4957a11ce18c7c8448804c780925fb80, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -874,6 +882,22 @@ PrefabInstance:
     - target: {fileID: 1095182707368029540, guid: 4957a11ce18c7c8448804c780925fb80, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1448018349807732412, guid: 4957a11ce18c7c8448804c780925fb80, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1448018349807732412, guid: 4957a11ce18c7c8448804c780925fb80, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7558206473062573237, guid: 4957a11ce18c7c8448804c780925fb80, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 15.032922
+      objectReference: {fileID: 0}
+    - target: {fileID: 7558206473062573237, guid: 4957a11ce18c7c8448804c780925fb80, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.1601224
       objectReference: {fileID: 0}
     - target: {fileID: 9222216199866664719, guid: 4957a11ce18c7c8448804c780925fb80, type: 3}
       propertyPath: m_Name
