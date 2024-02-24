@@ -5,7 +5,11 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 /// <summary>
-/// 
+/// Project: JumpyStreet
+/// Name: Jacob Frigon
+/// Section: SGD 285.4171
+/// Instructor: Aurore Locklear
+/// Date: 02/25/2024
 /// </summary>
 [RequireComponent(typeof(Image))]
 public class Tab : MonoBehaviour, 

@@ -4,7 +4,11 @@ using TMPro;
 using UnityEngine;
 
 /// <summary>
-/// 
+/// Project: JumpyStreet
+/// Name: Jacob Frigon
+/// Section: SGD 285.4171
+/// Instructor: Aurore Locklear
+/// Date: 02/25/2024
 /// </summary>
 public class Score : MonoBehaviour
 {
@@ -24,17 +28,12 @@ public class Score : MonoBehaviour
 
     private void Update()
     {
-        //Check when player jumps and increment score.
         int nextScore = Mathf.RoundToInt(player.transform.position.x);
         if (nextScore > score)
         {
             score = nextScore;
             scoreText.text = score.ToString();
         }
-
-        //Check if player is dead.
-        //If dead, compare high scores.
-        //Create prompt to enter name if high score.
     }
 
     public int GetPlayerScore()

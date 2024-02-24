@@ -1,3 +1,10 @@
+/// <summary>
+/// Project: JumpyStreet
+/// Name: Jacob Frigon
+/// Section: SGD 285.4171
+/// Instructor: Aurore Locklear
+/// Date: 02/25/2024
+/// </summary>
 Shader "UI/Blurred"
 {
     Properties
@@ -8,14 +15,7 @@ Shader "UI/Blurred"
 
     SubShader
     {
-        Tags
-        {
-            "Queue" = "Transparent"
-            "IgnoreProjector" = "True"
-            "RenderType" = "Transparent"
-            "PreviewType" = "Plane"
-            "CanUseSpriteAtlas" = "True"
-        }
+        
         Cull Off
         Lighting Off
         ZWrite Off
@@ -27,7 +27,7 @@ Shader "UI/Blurred"
         {
             Tags
             { 
-                    "LightMode" = "Always" 
+                "LightMode" = "Always" 
             }
         }
         
@@ -78,6 +78,8 @@ Shader "UI/Blurred"
             {
 
                 half4 sum = half4(0,0,0,0);
+                //Had to put this on all one line because not doing so
+                //made a weird error.
                 #define BLURPIXEL(weight,kernelx) tex2Dproj( _GrabTexture, UNITY_PROJ_COORD(float4(i.uvgrab.x + _GrabTexture_TexelSize.x * kernelx*_Size, i.uvgrab.y, i.uvgrab.z, i.uvgrab.w))) * weight
                 sum += BLURPIXEL(0.05, -4.0);
                 sum += BLURPIXEL(0.09, -3.0);
@@ -151,8 +153,9 @@ Shader "UI/Blurred"
             half4 frag(v2f i) : COLOR
             {
                 half4 sum = half4(0,0,0,0);
+                //Had to put this on all one line because not doing so
+                //made a weird error.
                 #define BLURPIXEL(weight,kernely) tex2Dproj( _GrabTexture, UNITY_PROJ_COORD(float4(i.uvgrab.x, i.uvgrab.y + _GrabTexture_TexelSize.y * kernely * _Size, i.uvgrab.z, i.uvgrab.w))) * weight
-            
                 sum += BLURPIXEL(0.05, -4.0);
                 sum += BLURPIXEL(0.09, -3.0);
                 sum += BLURPIXEL(0.12, -2.0);
@@ -215,16 +218,16 @@ Shader "UI/Blurred"
                 OUT.vertex = UnityObjectToClipPos(OUT.worldPosition);
 
                 OUT.texcoord = TRANSFORM_TEX(v.texcoord, _MainTex);
-            #if UNITY_UV_STARTS_AT_TOP
-                float scale = -1.0;
-            #else
-                float scale = 1.0;
-            #endif
-            OUT.uvgrab.xy = (float2(OUT.vertex.x, OUT.vertex.y * scale) + OUT.vertex.w) * 0.5;
-            OUT.uvgrab.zw = OUT.vertex.zw;
+                #if UNITY_UV_STARTS_AT_TOP
+                    float scale = -1.0;
+                #else
+                    float scale = 1.0;
+                #endif
+                OUT.uvgrab.xy = (float2(OUT.vertex.x, OUT.vertex.y * scale) + OUT.vertex.w) * 0.5;
+                OUT.uvgrab.zw = OUT.vertex.zw;
 
-            OUT.color = v.color;
-            return OUT;
+                OUT.color = v.color;
+                return OUT;
             }
 
             fixed4 frag(v2f IN) : SV_Target
