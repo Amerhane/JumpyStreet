@@ -7,6 +7,6 @@ public class PlayOnActive : MonoBehaviour
 {
     public void OnEnable()
     {
-        SceneManager.LoadScene("GameUITestScene");
+        SceneManager.LoadScene("GameScene");
     }
 }

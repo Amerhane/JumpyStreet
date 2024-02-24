@@ -91,7 +91,7 @@ public class GameUIManager : MonoBehaviour
 
     public void OnRestartButtonClick()
     {
-        SceneManager.LoadScene("GameUITestScene");
+        SceneManager.LoadScene("GameScene");
     }
 
     public void OnQuitButtonClick()
@@ -104,13 +104,11 @@ public class GameUIManager : MonoBehaviour
         if (paused)
         {
             paused = false;
-            Time.timeScale = 1;
             pauseMenuObject.SetActive(false);
         }
         else
         {
             paused = true;
-            Time.timeScale = 0;
             pauseMenuObject.SetActive(true);
         }
     }
