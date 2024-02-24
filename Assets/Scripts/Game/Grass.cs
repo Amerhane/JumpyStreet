@@ -30,6 +30,8 @@ public class Grass : MonoBehaviour
         float currentZ = -4.5f;
         float spawnedObstacles = 0;
 
+        GameObject obstacle;
+
         for (int i = 0; i < 9; i++) 
         {
             float shouldPlantSpawn = Random.Range(0f, 100f);
@@ -40,11 +42,11 @@ public class Grass : MonoBehaviour
                     float determinePlant = Random.Range(0f, 100f);
                     if (determinePlant <= 50)
                     {
-                        Instantiate(treePref, new Vector3(transform.position.x, 0f, currentZ), transform.rotation);
+                        obstacle = Instantiate(treePref, new Vector3(transform.position.x, 0f, currentZ), transform.rotation);
                     }
                     else
                     {
-                        Instantiate(bushPref, new Vector3(transform.position.x, 0f, currentZ), transform.rotation);
+                        obstacle = Instantiate(bushPref, new Vector3(transform.position.x, 0f, currentZ), transform.rotation);
                     }
                     spawnedObstacles++;
                 }
