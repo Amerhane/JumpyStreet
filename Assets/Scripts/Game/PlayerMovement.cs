@@ -70,9 +70,11 @@ public class PlayerMovement : MonoBehaviour
 
     void AdjustPositionAndRotation(Vector3 newRotation)
     {
+        float zPos = Mathf.Sign(transform.position.z) * (Mathf.Abs((int)transform.position.z) + 0.5f);
+
         rb.velocity = Vector3.zero;
         transform.eulerAngles = newRotation;
-        transform.position = new Vector3(Mathf.Round(transform.position.x), transform.position.y, Mathf.Round(transform.position.z));
+        transform.position = new Vector3(Mathf.Round(transform.position.x), transform.position.y, zPos);
     }
 
     private void OnCillisionEnter(Collision collision)
