@@ -35,50 +35,55 @@ public class TerrainGeneration : MonoBehaviour
 
     private void GenerateTerrain()
     {
+        float distAhead = Vector3.Distance(player.transform.GetChild(0).transform.position, instPos);
+
         if (Input.GetKeyUp(KeyCode.W)) // Used for testing, will merge with player input code later
         {
-            GenerateFirstRand();
+            if (distAhead <= 8f)
+            {
+                GenerateFirstRand();
 
-            if (firstRand <= 33) // Grass is generated if the number is in the first 33% of the range
-            {
-                storedRand = firstRand;
-                secondRand = Random.Range(2, 9);
-                for (int i = 0; i < secondRand; i++)
+                if (firstRand <= 33) // Grass is generated if the number is in the first 33% of the range
                 {
-                    instPos = new Vector3(distPlayer, 0, 0);
-                    distPlayer += 1;
-                    GameObject grassInst = Instantiate(grassTerrain) as GameObject;
-                    grassInst.transform.position = instPos;
-                    // add grass terrain to the list of spawned terrain in the scene
-                    spawnedTerrain.Add(grassInst);
+                    storedRand = firstRand;
+                    secondRand = Random.Range(2, 9);
+                    for (int i = 0; i < secondRand; i++)
+                    {
+                        instPos = new Vector3(distPlayer, 0, 0);
+                        distPlayer += 1;
+                        GameObject grassInst = Instantiate(grassTerrain) as GameObject;
+                        grassInst.transform.position = instPos;
+                        // add grass terrain to the list of spawned terrain in the scene
+                        spawnedTerrain.Add(grassInst);
+                    }
                 }
-            }
-            if (firstRand >= 34 && firstRand <= 85) // Roads are generated if the number in the range of 34% and 85%
-            {
-                storedRand = firstRand;
-                secondRand = Random.Range(2, 7);
-                for (int i = 0; i < secondRand; i++)
+                if (firstRand >= 34 && firstRand <= 85) // Roads are generated if the number in the range of 34% and 85%
                 {
-                    instPos = new Vector3(distPlayer, -0.1f, 0);
-                    distPlayer += 1;
-                    GameObject roadInst = Instantiate(roadTerrain) as GameObject;
-                    roadInst.transform.position = instPos;
-                    // add road terrain to the list of spawned terrain in the scene
-                    spawnedTerrain.Add(roadInst);
+                    storedRand = firstRand;
+                    secondRand = Random.Range(2, 7);
+                    for (int i = 0; i < secondRand; i++)
+                    {
+                        instPos = new Vector3(distPlayer, -0.1f, 0);
+                        distPlayer += 1;
+                        GameObject roadInst = Instantiate(roadTerrain) as GameObject;
+                        roadInst.transform.position = instPos;
+                        // add road terrain to the list of spawned terrain in the scene
+                        spawnedTerrain.Add(roadInst);
+                    }
                 }
-            }
-            if (firstRand >= 86) // Rivers are generated if the number is in the last 15% of the range (86%+)
-            {
-                storedRand = firstRand;
-                secondRand = Random.Range(2, 6);
-                for (int i = 0; i < secondRand; i++)
+                if (firstRand >= 86) // Rivers are generated if the number is in the last 15% of the range (86%+)
                 {
-                    instPos = new Vector3(distPlayer, -0.2f, 0);
-                    distPlayer += 1;
-                    GameObject riverInst = Instantiate(riverTerrain) as GameObject;
-                    riverInst.transform.position = instPos;
-                    // add river terrain to the list of spawned terrain in the scene
-                    spawnedTerrain.Add(riverInst);
+                    storedRand = firstRand;
+                    secondRand = Random.Range(2, 6);
+                    for (int i = 0; i < secondRand; i++)
+                    {
+                        instPos = new Vector3(distPlayer, -0.2f, 0);
+                        distPlayer += 1;
+                        GameObject riverInst = Instantiate(riverTerrain) as GameObject;
+                        riverInst.transform.position = instPos;
+                        // add river terrain to the list of spawned terrain in the scene
+                        spawnedTerrain.Add(riverInst);
+                    }
                 }
             }
 
