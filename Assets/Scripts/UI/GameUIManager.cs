@@ -29,6 +29,9 @@ public class GameUIManager : MonoBehaviour
     [SerializeField]
     private TMP_InputField inputBox;
 
+    [SerializeField]
+    private PlayerMovement player;
+
     private bool paused;
     private bool gameOver;
 
@@ -49,17 +52,9 @@ public class GameUIManager : MonoBehaviour
         }
 
         //Check if player dies and set game over if so.
-        if(!gameOver && Input.GetKeyDown(KeyCode.P))
+        if(!gameOver && player.isDead)
         {
             GameOver();
-        }
-
-        if(gameOver)
-        {
-            if(Input.GetKeyDown(KeyCode.Space))
-            {
-                SceneManager.LoadScene("MainMenuScene");
-            }
         }
     }
 

@@ -2232,6 +2232,7 @@ MonoBehaviour:
   yourScoreNumText: {fileID: 1994629591}
   highScoreMenu: {fileID: 1105941415}
   inputBox: {fileID: 1741318577}
+  player: {fileID: 1313410052}
 --- !u!4 &833239346
 Transform:
   m_ObjectHideFlags: 0
@@ -3548,6 +3549,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4957a11ce18c7c8448804c780925fb80, type: 3}
+--- !u!114 &1313410052 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7385725434769110170, guid: 4957a11ce18c7c8448804c780925fb80, type: 3}
+  m_PrefabInstance: {fileID: 1313410051}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 225f9386c7c8f0945ba66482d1cd2887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1459355432 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3258612285759457961, guid: c42b942da70b06248b138d08c2b2ccd7, type: 3}
