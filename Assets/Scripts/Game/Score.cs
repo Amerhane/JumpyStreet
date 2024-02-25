@@ -27,7 +27,7 @@ public class Score : MonoBehaviour
     private void Update()
     {
         int nextScore = Mathf.RoundToInt(player.transform.position.x);
-        if (nextScore > score)
+        if (nextScore > score && player.GetComponent<PlayerMovement>().isDead == false)
         {
             score = nextScore;
             scoreText.text = score.ToString();
