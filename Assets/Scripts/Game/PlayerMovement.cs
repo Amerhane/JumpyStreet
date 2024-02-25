@@ -1,7 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Project: JumpyStreet
+/// Name: Josiah Glenewinkel
+/// Section: SGD 285.4171
+/// Instructor: Aurore Locklear
+/// Date: 02/25/2024
+/// </summary>
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody rb;
@@ -9,18 +15,19 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float xJumpForce = 100f;
     [SerializeField] float yJumpForce = 100f;
     [SerializeField] float groundCheckDistance = 0.3f;
-    [SerializeField] float obstacleCheckDistance = 2.0f;
     bool isGrounded = false;
 
     public Vector3 destroyPoint { get; private set; }
 
-    [SerializeField] GameObject respawn;
-
     RaycastHit hit;
+
+    public bool isDead; //DEATH BOOL HERE
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        isDead = false;
     }
 
     void Update ()
@@ -77,17 +84,18 @@ public class PlayerMovement : MonoBehaviour
         transform.position = new Vector3(Mathf.Round(transform.position.x), transform.position.y, zPos);
     }
 
-    private void OnCillisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Water")
         {
             Debug.Log("WATER");
-            transform.position = respawn.transform.position;
+            isDead = true;
         }
 
         if (collision.gameObject.tag == "LargeObstacle" || collision.gameObject.tag == "SmallObstacle")
         {
-            transform.position = respawn.transform.position;
+            Debug.Log("CAR");
+            isDead = true;
         }
     }
 }
