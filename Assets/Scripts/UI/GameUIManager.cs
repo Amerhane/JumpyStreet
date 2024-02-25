@@ -48,6 +48,7 @@ public class GameUIManager : MonoBehaviour
             PauseGame();
         }
 
+        //Check if player dies and set game over if so.
         if(!gameOver && Input.GetKeyDown(KeyCode.P))
         {
             GameOver();
